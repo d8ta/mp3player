@@ -16,7 +16,7 @@ var player = window.player || {};
     	}
     };
 
-    //View for trackinformations
+    //View for trackinfos
     var TrackInfoView = function (model, $element) {
     	AbstractView.apply(this, arguments);
     };
@@ -40,9 +40,11 @@ var player = window.player || {};
     		this.model.setVolume($element.find('#volumeSlider').data("interface").getValue());
     	}.bind(this));
 
+
         //trackhead
-        $element.find('#trackhead').on('change', function() {
+        $element.find('#titletrack').on('change', function() {
             this.model.timeUpdate();
+            console.log('head changed');
         }.bind(model));
 
     };

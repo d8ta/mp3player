@@ -21,6 +21,9 @@ var player = window.player || {};
 
     	//duration of the audiofile
     	this.timeUpdate();
+
+    	// this.clickPercent();
+    	// this.moveplayhead();
     }
 
     PlayerModel.prototype = {
@@ -52,6 +55,7 @@ var player = window.player || {};
 	    playTitle: function () {
 			this._audio.play();	
 			console.log('play')
+			this.timeUpdate();
 	    },	
 
 	    stopTitle: function () {
@@ -87,8 +91,28 @@ var player = window.player || {};
 			var duration = this._audio.duration;
 			var playPercent = 100 * (this._audio.currentTime / duration);
 			trackhead.style.marginLeft = playPercent + "%";
-			console.log('duration/percent: ' + duration + '/' + playPercent);
+			console.log('Played: ' + Math.round(10 * playPercent) + ' %');
+			console.log('Songtime : ' + duration + ' secondes');
 		},
+
+		// // returns click as decimal (.77) of the total titletrackWidth
+  //       clickPercent:) function(e) {
+  //           return (e.pageX - titletrack.offsetLeft) / titletrackWidth;
+  //       },
+         
+  //       moveplayhead: function(e) {
+  //           var newMargLeft = e.pageX - titletrack.offsetLeft;
+                
+  //           if (newMargLeft = 0 amp;amp; newMargLeft = titletrackWidth) {
+  //               trackhead.style.marginLeft = newMargLeft + "px";
+  //           }
+  //           if (newMargLeft  0) {
+  //               trackhead.style.marginLeft = "0px";
+  //           }
+  //           if (newMargLeft  titletrackWidth) {
+  //               trackhead.style.marginLeft = titletrackWidth + "px";
+  //           }
+  //       }
 	};
 
     ns.PlayerModel = PlayerModel;
