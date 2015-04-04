@@ -89,30 +89,39 @@ var player = window.player || {};
 
 		timeUpdate: function() {
 			var duration = this._audio.duration;
+
+
+
+			// test
+			var music = document.getElementById('trackhead');
+			music.addEventListener("timeupdate", timeUpdate, false);
+			 
+			function timeUpdate() {
+				var playPercent = 100 * (music.currentTime / duration);
+				trackhead.style.marginLeft = playPercent + "%";
+			}
+			 
+			// Gets audio file duration
+			music.addEventListener("canplaythrough", function () {
+				duration = music.duration;
+			}, false);
+
 			var playPercent = 100 * (this._audio.currentTime / duration);
 			trackhead.style.marginLeft = playPercent + "%";
-			console.log('Played: ' + Math.round(10 * playPercent) + ' %');
-			console.log('Songtime : ' + duration + ' secondes');
+
+			// some consoles for testing
+			console.log('playPercent ' + playPercent);
+			console.log('music ' + music);
+
+			// end
+
+			// duration = duration / 360; //should show minutes
+			// duration = duration.toFixed(2);
+			// $('#timeAhead').html(duration);
+			// console.log('Songtime : ' + duration + ' seconds');
+			// console.log('Percent : ' + playPercent + ' %');
 		},
 
-		// // returns click as decimal (.77) of the total titletrackWidth
-  //       clickPercent:) function(e) {
-  //           return (e.pageX - titletrack.offsetLeft) / titletrackWidth;
-  //       },
-         
-  //       moveplayhead: function(e) {
-  //           var newMargLeft = e.pageX - titletrack.offsetLeft;
-                
-  //           if (newMargLeft = 0 amp;amp; newMargLeft = titletrackWidth) {
-  //               trackhead.style.marginLeft = newMargLeft + "px";
-  //           }
-  //           if (newMargLeft  0) {
-  //               trackhead.style.marginLeft = "0px";
-  //           }
-  //           if (newMargLeft  titletrackWidth) {
-  //               trackhead.style.marginLeft = titletrackWidth + "px";
-  //           }
-  //       }
 	};
 
     ns.PlayerModel = PlayerModel;

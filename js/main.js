@@ -20,5 +20,4 @@ var player = window.player || {};
     var trackView = new ns.TrackInfoView(model, $('#trackinfos'));
     var audioControls = new ns.AudioControls(model, $('#audioControls'), null);
 
-
 })(player);
