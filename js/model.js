@@ -20,7 +20,7 @@ var player = window.player || {};
     	this._allTracks = null;
 
     	//duration of the audiofile
-    	this.timeUpdate();
+    	this.trackTime();
 
     	// this.clickPercent();
     	// this.moveplayhead();
@@ -55,7 +55,6 @@ var player = window.player || {};
 	    playTitle: function () {
 			this._audio.play();	
 			console.log('play')
-			this.timeUpdate();
 	    },	
 
 	    stopTitle: function () {
@@ -87,37 +86,16 @@ var player = window.player || {};
 			console.log('volume changed')
 		},
 
-		timeUpdate: function() {
+		trackTime: function() {
 			var duration = this._audio.duration;
 
-
-
-			// test
-			var music = document.getElementById('trackhead');
-			music.addEventListener("timeupdate", timeUpdate, false);
-			 
-			function timeUpdate() {
-				var playPercent = 100 * (music.currentTime / duration);
-				trackhead.style.marginLeft = playPercent + "%";
-			}
-			 
-			// Gets audio file duration
-			music.addEventListener("canplaythrough", function () {
-				duration = music.duration;
-			}, false);
-
-			var playPercent = 100 * (this._audio.currentTime / duration);
-			trackhead.style.marginLeft = playPercent + "%";
-
 			// some consoles for testing
-			console.log('playPercent ' + playPercent);
-			console.log('music ' + music);
+			console.log('duration ' + duration);
 
-			// end
 
+			// $('#time').html(duration);
 			// duration = duration / 360; //should show minutes
 			// duration = duration.toFixed(2);
-			// $('#timeAhead').html(duration);
 			// console.log('Songtime : ' + duration + ' seconds');
 			// console.log('Percent : ' + playPercent + ' %');
 		},
