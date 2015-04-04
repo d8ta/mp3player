@@ -55,6 +55,7 @@ var player = window.player || {};
 	    playTitle: function () {
 			this._audio.play();	
 			console.log('play')
+			this.trackTime();
 	    },	
 
 	    stopTitle: function () {
@@ -86,19 +87,29 @@ var player = window.player || {};
 			console.log('volume changed')
 		},
 
+		// getDuration: function() {
+		// 	duration = this._audio.duration;
+		// 	return duration;
+		// 	// console.log('duration');	
+		// },
+
 		trackTime: function() {
+
 			var duration = this._audio.duration;
-
-			// some consoles for testing
-			console.log('duration ' + duration);
-
+		    var sec = Math.floor( duration );    
+		    var min = Math.floor( sec / 60 );
+		    min = min >= 10 ? min : '0' + min;    
+		    sec = Math.floor( sec % 60 );
+		    sec = sec >= 10 ? sec : '0' + sec;    
+		    console.log(min + ':' + sec);
+		},
 
 			// $('#time').html(duration);
 			// duration = duration / 360; //should show minutes
 			// duration = duration.toFixed(2);
 			// console.log('Songtime : ' + duration + ' seconds');
 			// console.log('Percent : ' + playPercent + ' %');
-		},
+		
 
 	};
 
