@@ -102,6 +102,8 @@ var player = window.player || {};
 		    sec = Math.floor( sec % 60 );
 		    sec = sec >= 10 ? sec : '0' + sec;    
 		    console.log(min + ':' + sec);
+
+		    $('#time').html(min + ':' + sec);
 		},
 
 			// $('#time').html(duration);
