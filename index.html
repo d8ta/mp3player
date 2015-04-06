@@ -23,16 +23,17 @@
 	<button class="forwardBtn"> >> </button>
 	<button class="shuffleBtn">Shuffle</button>
 
-<!-- title track for audio duration -->
-<form action="text" id="time"></form>
-<div id="timeline">
-		<div id="playhead"></div>
-</div>
+	<!-- title track for audio duration -->
+	<label for="time" id="time"></label>
+	<div id="playhead"></div>
+	<div id="timeline" class="slider" data-min="0" data-max="1" data-value="0">
+	</div>
 
 
 	<!-- volume slider -->
 	<div id="volumeSlider" class="slider" data-min="0" data-max="1" data-value="0.5" >
 	</div>
+
 </div>
 
 <!-- json output -->

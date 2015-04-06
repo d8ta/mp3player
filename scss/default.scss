@@ -76,32 +76,37 @@ p {
 	border: 1px solid #9FB19F;
 }
 
+
 .slider.active .thumb {
 	background-color: #DCE2DC;
 }
 
-#timeline{
-	width: 400px;
-	height: 20px;
-	background: #f5f5f5;
-	margin-top: 20px;
+#time {
 	float: left;
-	border-radius: 25px;
-	border: 1px solid #f5f5f5
+	margin-top: 80px;
+	left: 120px;
+	position: absolute;  
 }
+
+// #timeline{
+// 	width: 400px;
+// 	height: 20px;
+// 	background: #f5f5f5;
+// 	margin-top: 20px;
+// 	float: left;
+// 	border-radius: 25px;
+// 	border: 1px solid #f5f5f5
+// }
  
 #playhead{
 	width: 18px;
 	height: 18px;
+	margin-left: 0px;
 	border-radius: 50%;
 	margin-top: 0px;
 	background: #DCE2DC;
 	border: 1px solid #9FB19F;
 }
 
-// minutes and seconds html
-#time {
-	
-}
 
 

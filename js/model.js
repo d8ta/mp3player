@@ -19,11 +19,9 @@ var player = window.player || {};
     	//trackarray
     	this._allTracks = null;
 
-    	//duration of the audiofile
-    	this.trackTime();
+    	//show duration of the audiofile
+    	this.getSongDuration();
 
-    	// this.clickPercent();
-    	// this.moveplayhead();
     }
 
     PlayerModel.prototype = {
@@ -55,7 +53,7 @@ var player = window.player || {};
 	    playTitle: function () {
 			this._audio.play();	
 			console.log('play')
-			this.trackTime();
+			this.getSongDuration();
 	    },	
 
 	    stopTitle: function () {
@@ -87,32 +85,25 @@ var player = window.player || {};
 			console.log('volume changed')
 		},
 
-		// getDuration: function() {
-		// 	duration = this._audio.duration;
-		// 	return duration;
-		// 	// console.log('duration');	
-		// },
-
-		trackTime: function() {
-
+		getSongDuration: function() {
 			var duration = this._audio.duration;
 		    var sec = Math.floor( duration );    
 		    var min = Math.floor( sec / 60 );
 		    min = min >= 10 ? min : '0' + min;    
 		    sec = Math.floor( sec % 60 );
 		    sec = sec >= 10 ? sec : '0' + sec;    
-		    console.log(min + ':' + sec);
 
+		    var percentOfSong = 100 * (this._audio.currentTime / duration);
+		    var durationPercent = percentOfSong.toFixed(0);
+		    console.log(durationPercent);
+
+		    // show label
 		    $('#time').html(min + ':' + sec);
-		},
 
-			// $('#time').html(duration);
-			// duration = duration / 360; //should show minutes
-			// duration = duration.toFixed(2);
-			// console.log('Songtime : ' + duration + ' seconds');
-			// console.log('Percent : ' + playPercent + ' %');
+    	},
+
+
 		
-
 	};
 
     ns.PlayerModel = PlayerModel;
