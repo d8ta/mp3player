@@ -41,10 +41,10 @@ var player = window.player || {};
     		this.model.setVolume($element.find('#volumeSlider').data("interface").getValue());
     	}.bind(this));
 
-        // playhead
-        $element.find('#timeline').on('change', function(){
-            this.model.setTrack($element.find('#timeline').data("interface").getValue());
-        }.bind(this));
+        // // playhead
+        // $element.find('#timeline').on('change', function(){
+        //     this.model.setTrack($element.find('#timeline').data("interface").getValue());
+        // }.bind(this));
 
     };
 

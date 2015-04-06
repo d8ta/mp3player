@@ -67,8 +67,25 @@ p {
 
 #time {
   float: left;
-  margin-top: 80px;
+  margin-top: 60px;
   left: 120px;
   position: absolute; }
+
+#timeline {
+  width: 400px;
+  height: 20px;
+  background: #f5f5f5;
+  margin-top: 20px;
+  float: left;
+  border-radius: 25px;
+  border: 1px solid #f5f5f5; }
+
+#playhead {
+  width: 18px;
+  height: 18px;
+  margin-top: 0px;
+  border-radius: 50%;
+  background: #DCE2DC;
+  border: 1px solid #9FB19F; }
 
 /*# sourceMappingURL=default.css.map */

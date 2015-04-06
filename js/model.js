@@ -21,6 +21,7 @@ var player = window.player || {};
 
     	//show duration of the audiofile
     	this.getSongDuration();
+    	this.timeUpdate();
 
     }
 
@@ -52,13 +53,13 @@ var player = window.player || {};
 
 	    playTitle: function () {
 			this._audio.play();	
-			console.log('play')
-			this.getSongDuration();
+			// console.log('play')
+			this.timeUpdate();
 	    },	
 
 	    stopTitle: function () {
 			this._audio.pause();
-			console.log('pause')
+			// console.log('pause')
 		},
 
 		forwardTitle: function() { 
@@ -86,6 +87,7 @@ var player = window.player || {};
 		},
 
 		getSongDuration: function() {
+			// songtime in min:sec format
 			var duration = this._audio.duration;
 		    var sec = Math.floor( duration );    
 		    var min = Math.floor( sec / 60 );
@@ -95,8 +97,6 @@ var player = window.player || {};
 
 			// time left 
 		    var timeLeft = duration - this._audio.currentTime;
-		    console.log('time left: ' + timeLeft)
-
 		    var secLeft = Math.floor( duration );    
 		    var minLeft = Math.floor( secLeft / 60 );
 		    minLeft = minLeft >= 10 ? minLeft : '0' + minLeft;    
@@ -105,18 +105,26 @@ var player = window.player || {};
 
 		    // show label
 		    $('#time').html(min + ':' + sec + ' / ' + minLeft + ':' + secLeft);
-		
-		    // ToDo: Goes inside setTrack for the head
-		    var percentOfSong = 100 * (this._audio.currentTime / duration);
-		    var durationPercent = percentOfSong.toFixed(0);
-
-
+		    
+		    return duration;
     	},
 
-		setTrack: function() {
+    	setHead: function() {
+    		var music = document.getElementById('playhead');
+			music.addEventListener("timeupdate", timeUpdate, false);
+    	},
 
-			console.log('head changed')
-		},
+    	timeUpdate: function() {
+		    // transform to percent value
+		    var percentOfSong = 100 * (this._audio.currentTime / this.getSongDuration());
+		    var durationPercent = percentOfSong.toFixed(0);
+			playhead.style.marginLeft = durationPercent + "%";
+
+	    	// test
+	    	console.log(durationPercent);			 
+	    	// test
+
+    	},
 
 	};
 
