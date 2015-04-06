@@ -25,22 +25,23 @@ var player = window.player || {};
 
     	var self = this; // because of needing another scope
 
-    	// listener for playhead
-        this._audio.addEventListener('timeupdate', function (listen) {
-            
-            console.log(self._audio.currentTime);
+    	// eventlistener for playhead
+        this._audio.addEventListener('timeupdate', function (event) {
             $(self).trigger('timeUpdate');
         });
 
+
+        // eventlistener for songduration and time left of song
+        this._audio.addEventListener('getSongDuration',function (event) {
+			$(self).trigger('getSongDuration');	
+        });
+
+
+
     };
-
-
-
 
     PlayerModel.prototype = {
 
-
-    	
 	    getTrackInfo: function() {
 
 	    var self = this;
@@ -66,13 +67,12 @@ var player = window.player || {};
 
 	    playTitle: function () {
 			this._audio.play();	
-			// console.log('play')
-			this.timeUpdate();
+			console.log('play')
 	    },	
 
 	    stopTitle: function () {
 			this._audio.pause();
-			// console.log('pause')
+			console.log('pause')
 		},
 
 		forwardTitle: function() { 
@@ -101,7 +101,7 @@ var player = window.player || {};
 
 		getSongDuration: function() {
 			// songtime in min:sec format
-			var duration = this._audio.duration;
+			var duration = this._audio.currentTime.toFixed(0);
 		    var sec = Math.floor( duration );    
 		    var min = Math.floor( sec / 60 );
 		    min = min >= 10 ? min : '0' + min;    
@@ -109,22 +109,21 @@ var player = window.player || {};
 		    sec = sec >= 10 ? sec : '0' + sec; 		    
 
 			// time left 
-		    var timeLeft = duration - this._audio.currentTime;
-		    var secLeft = Math.floor( duration );    
+		    var timeLeft = this._audio.duration - this._audio.currentTime.toFixed(0);
+		    var secLeft = Math.floor( timeLeft );    
 		    var minLeft = Math.floor( secLeft / 60 );
 		    minLeft = minLeft >= 10 ? minLeft : '0' + minLeft;    
 		    secLeft = Math.floor( secLeft % 60 );
-		    secLeft = secLeft >= 10 ? secLeft : '0' + secLeft;    
+		    secLeft = secLeft >= 10 ? secLeft : '0' + secLeft; 
+
+		    console.log('songtime: ' + this._audio.currentTime.toFixed(1) + ' sec');
 
 		    // show label
-		    $('#time').html(min + ':' + sec + ' / ' + minLeft + ':' + secLeft);
-		    
-		    return duration;
-    	},
+		    $('#time').html('Played: ' + min + ':' + sec);
+		    $('#timeLeft').html('Left:  ' + minLeft + ':' + secLeft);
+		    // $('#time').html(this._audio.currentTime.toFixed(0) + ' / ' + this._audio.currentTime.toFixed(1));
 
-    	setHead: function() {
-    		var music = document.getElementById('playhead');
-			music.addEventListener("timeupdate", timeUpdate, false);
+		    return this._audio.duration;
     	},
 
     	timeUpdate: function() {
@@ -132,11 +131,8 @@ var player = window.player || {};
 		    var percentOfSong = 100 * (this._audio.currentTime / this.getSongDuration());
 		    var durationPercent = percentOfSong.toFixed(0);
 			playhead.style.marginLeft = durationPercent + "%";
-
-	    	// test
-	    	console.log(durationPercent);			 
-	    	// test
-
+	    	
+	    	console.log('duration: ' + durationPercent + '%');			 
     	},
 
 	};

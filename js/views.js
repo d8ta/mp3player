@@ -37,14 +37,9 @@ var player = window.player || {};
     	$element.find('.shuffleBtn').on('click', model.shuffleTitle.bind(model));
 
         // volumslider
-    	$element.find('#volumeSlider').on('change', function(){
-    		this.model.setVolume($element.find('#volumeSlider').data("interface").getValue());
-    	}.bind(this));
-
-        // // playhead
-        // $element.find('#timeline').on('change', function(){
-        //     this.model.setTrack($element.find('#timeline').data("interface").getValue());
-        // }.bind(this));
+        $element.find('#volumeSlider').on('change', function(){
+            this.model.setVolume($element.find('#volumeSlider').data("interface").getValue());
+        }.bind(this));
 
     };
 
