@@ -71,13 +71,4 @@ p {
   left: 120px;
   position: absolute; }
 
-#playhead {
-  width: 18px;
-  height: 18px;
-  margin-left: 0px;
-  border-radius: 50%;
-  margin-top: 0px;
-  background: #DCE2DC;
-  border: 1px solid #9FB19F; }
-
 /*# sourceMappingURL=default.css.map */

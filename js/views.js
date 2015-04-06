@@ -36,16 +36,15 @@ var player = window.player || {};
     	$element.find('.backwardBtn').on('click', model.backwardTitle.bind(model));
     	$element.find('.shuffleBtn').on('click', model.shuffleTitle.bind(model));
 
+        // volumslider
     	$element.find('#volumeSlider').on('change', function(){
     		this.model.setVolume($element.find('#volumeSlider').data("interface").getValue());
     	}.bind(this));
 
-
-        //trackhead
-        $element.find('#titletrack').on('change', function() {
-            this.model.timeUpdate();
-            console.log('head changed');
-        }.bind(model));
+        // playhead
+        $element.find('#timeline').on('change', function(){
+            this.model.setTrack($element.find('#timeline').data("interface").getValue());
+        }.bind(this));
 
     };
 
@@ -60,3 +59,12 @@ var player = window.player || {};
     ns.AudioControls = AudioControls;
 
 })(player);
+
+
+
+
+
+
+
+
+

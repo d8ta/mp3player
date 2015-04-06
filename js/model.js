@@ -91,19 +91,33 @@ var player = window.player || {};
 		    var min = Math.floor( sec / 60 );
 		    min = min >= 10 ? min : '0' + min;    
 		    sec = Math.floor( sec % 60 );
-		    sec = sec >= 10 ? sec : '0' + sec;    
+		    sec = sec >= 10 ? sec : '0' + sec; 		    
 
-		    var percentOfSong = 100 * (this._audio.currentTime / duration);
-		    var durationPercent = percentOfSong.toFixed(0);
-		    console.log(durationPercent);
+			// time left 
+		    var timeLeft = duration - this._audio.currentTime;
+		    console.log('time left: ' + timeLeft)
+
+		    var secLeft = Math.floor( duration );    
+		    var minLeft = Math.floor( secLeft / 60 );
+		    minLeft = minLeft >= 10 ? minLeft : '0' + minLeft;    
+		    secLeft = Math.floor( secLeft % 60 );
+		    secLeft = secLeft >= 10 ? secLeft : '0' + secLeft;    
 
 		    // show label
-		    $('#time').html(min + ':' + sec);
+		    $('#time').html(min + ':' + sec + ' / ' + minLeft + ':' + secLeft);
+		
+		    // ToDo: Goes inside setTrack for the head
+		    var percentOfSong = 100 * (this._audio.currentTime / duration);
+		    var durationPercent = percentOfSong.toFixed(0);
+
 
     	},
 
+		setTrack: function() {
 
-		
+			console.log('head changed')
+		},
+
 	};
 
     ns.PlayerModel = PlayerModel;
