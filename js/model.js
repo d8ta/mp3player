@@ -3,7 +3,7 @@ var player = window.player || {};
 (function (ns) {
     "use strict";
 
-    //all the logic
+    // constructor function
     var PlayerModel = function() { 
 
     	this._audio = new Audio();
@@ -16,21 +16,34 @@ var player = window.player || {};
     	this.playTitle();
     	this.stopTitle();
 
-    	//trackarray
+    	// trackarray
     	this._allTracks = null;
 
-    	//show duration of the audiofile
+    	// show duration of the audiofile
     	this.getSongDuration();
     	this.timeUpdate();
 
-    }
+    	var self = this; // because of needing another scope
+
+    	// listener for playhead
+        this._audio.addEventListener('timeupdate', function (listen) {
+            
+            console.log(self._audio.currentTime);
+            $(self).trigger('timeUpdate');
+        });
+
+    };
+
+
+
 
     PlayerModel.prototype = {
+
+
     	
 	    getTrackInfo: function() {
 
-	    	var self = this;
-
+	    var self = this;
 		    $.getJSON('data/_tracklist.json', function (data) { 
 
 		    	self._allTracks = data.tracks; //loads the array from the JSON file
